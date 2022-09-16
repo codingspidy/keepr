@@ -46,7 +46,7 @@ const NoteItem = ({ id, title, body, handleModalOpen }) => {
         }}
         sx={{ wordWrap: "break-word" }}
       >
-        <Typography sx={{ fontSize: ".9rem", fontWeight: "600" }}>
+        <Typography sx={{ fontSize: ".95rem", fontWeight: "600", marginBottom: "3px" }}>
           {title}
         </Typography>
 
