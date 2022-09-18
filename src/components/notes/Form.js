@@ -33,6 +33,8 @@ const Container = styled("form")({
 const SaveButton = styled(Button)({
   color: "#4a4a4a",
   borderColor: "#4a4a4a",
+   marginTop: "20px", 
+   alignSelf: "end",
   "&:hover": {
     color: "#ffffff",
     borderColor: "#000000",
@@ -84,7 +86,6 @@ const Form = () => {
           {showTextField && (
             <SaveButton
               type="submit"
-              sx={{ marginTop: "7px", alignSelf: "end" }}
               variant="outlined"
             >
               Save

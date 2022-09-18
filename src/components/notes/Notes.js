@@ -26,9 +26,10 @@ const MainContainer = styled(Box, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   [theme.breakpoints.up("sm")]: {
-    padding: "2em",
+    padding: "3em 2em",
     ...(isDrawerOpen && {
       marginInline: 0,
+      // marginRight: 0,
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(["width", "margin"], {
@@ -37,10 +38,6 @@ const MainContainer = styled(Box, {
       }),
     }),
   },
-  [theme.breakpoints.up("sm")]: {
-    padding: "3em 2em",
-  },
- 
 }));
 
 const paginationStyle = {

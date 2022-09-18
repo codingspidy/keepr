@@ -14,6 +14,17 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
+const SearchModalCta = styled(IconButton)(({ theme }) => ({
+  background: "#000000",
+  borderRadius: "2px",
+  padding: "7px 8px",
+  color: "#ffffff",
+  "&:hover": { background: "#000000" },
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
+}));
+
 export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
@@ -34,11 +45,11 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchButton = styled(IconButton)(({ theme }) => ({
   background: "#000000",
-  borderRadius: "2px",
-  padding: "7px 8px",
   color: "#ffffff",
+  display: "none",
   "&:hover": { background: "#000000" },
   [theme.breakpoints.up("sm")]: {
+    display: "flex",
     borderRadius: "0 4px 4px 0",
     padding: "9px 15px",
   },
@@ -62,9 +73,12 @@ const SearchBar = () => {
           inputProps={{ "aria-label": "search" }}
         />
       </Search>
-      <SearchButton onClick={handleOpenSearchModal}>
+      <SearchButton>
         <SearchIcon />
       </SearchButton>
+      <SearchModalCta onClick={handleOpenSearchModal}>
+        <SearchIcon />
+      </SearchModalCta>
     </Box>
   );
 };

@@ -25,9 +25,25 @@ const StyledCard = styled(Card)({
   boxShadow: "none",
 });
 
+const CardCtaMobile = styled(CardActions)(({ theme }) => ({
+  display: "block",
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
+}));
+
+const CardCta = styled(CardActions)(({ theme }) => ({
+  display: "none",
+  [theme.breakpoints.up("sm")]: {
+    display: "block",
+  },
+}));
+
+
 const PinButton = styled(IconButton)({
   position: "absolute",
   top: "0",
+  color: "#757575",
   right: "0",
 });
 
@@ -37,8 +53,8 @@ const NoteItem = ({ id, title, body, handleModalOpen }) => {
 
   return (
     <StyledCard
-      onMouseOver={(e) => setShowCardActions(true)}
-      onMouseOut={(e) => setShowCardActions(false)}
+      onMouseOver={() => setShowCardActions(true)}
+      onMouseOut={() => setShowCardActions(false)}
     >
       <CardContent
         onClick={() => {
@@ -46,14 +62,15 @@ const NoteItem = ({ id, title, body, handleModalOpen }) => {
         }}
         sx={{ wordWrap: "break-word" }}
       >
-        <Typography sx={{ fontWeight: "600", marginBottom: "3px" }}>
+        <Typography
+          sx={{ fontWeight: "600", marginBottom: "3px", fontSize: ".92rem" }}
+        >
           {title}
         </Typography>
-
         <Typography>{body}</Typography>
       </CardContent>
       {showCardActions && (
-        <CardActions>
+        <CardCta>
           <PinButton
             onClick={(e) => {
               handlePinClick(e, id);
@@ -70,8 +87,26 @@ const NoteItem = ({ id, title, body, handleModalOpen }) => {
           <IconButton sx={{ position: "absolute", bottom: "0", right: "0" }}>
             <Delete fontSize="small" sx={{ color: "#757575" }} />
           </IconButton>
-        </CardActions>
+        </CardCta>
       )}
+      <CardCtaMobile>
+        <PinButton
+          onClick={(e) => {
+            handlePinClick(e, id);
+          }}
+        >
+          <PinIcon fontSize="small" />
+        </PinButton>
+        <IconButton sx={{ position: "absolute", bottom: "0", right: "30px" }}>
+          <Archive
+            fontSize="small"
+            style={{ marginLeft: "auto", color: "#757575" }}
+          />
+        </IconButton>
+        <IconButton sx={{ position: "absolute", bottom: "0", right: "0" }}>
+          <Delete fontSize="small" sx={{ color: "#757575" }} />
+        </IconButton>
+      </CardCtaMobile>
     </StyledCard>
   );
 };
