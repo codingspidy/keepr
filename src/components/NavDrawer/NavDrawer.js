@@ -4,11 +4,12 @@ import { styled, Box, Drawer as MuiDrawer } from "@mui/material";
 
 import HeaderBar from "./HeaderBar";
 import NavList from "./NavList";
-import NoteContext from "../context/NoteContextProvider";
+import NoteContext from "../../context/NoteContextProvider";
 
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
+  zIndex: 10000,
   width: drawerWidth,
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
@@ -18,6 +19,8 @@ const openedMixin = (theme) => ({
 });
 
 const closedMixin = (theme) => ({
+  zIndex: 10000,
+  display: "none",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -25,6 +28,7 @@ const closedMixin = (theme) => ({
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
+    display: "block",
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });

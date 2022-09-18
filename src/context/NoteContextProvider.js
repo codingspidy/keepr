@@ -19,7 +19,9 @@ export const NoteContextProvider = (props) => {
 
   const [pinnedNotesArr, setPinnedNotesArr] = useState([]);
 
-  const [openErrorModal, setOpenErrorModal] = React.useState(false);
+  const [openErrorModal, setOpenErrorModal] = useState(false);
+
+  const [openSearchModal, setOpenSearchModal] = useState(false);
 
   const handleDrawer = () => {
     setIsDrawerOpen((prevState) => !prevState);
@@ -84,6 +86,9 @@ export const NoteContextProvider = (props) => {
   const handleOpenErrorModal = () => setOpenErrorModal(true);
   const handleCloseErrorModal = () => setOpenErrorModal(false);
 
+  const handleOpenSearchModal = () => setOpenSearchModal(true);
+  const handleCloseSearchModal = () => setOpenSearchModal(false);
+
   return (
     <NoteContext.Provider
       value={{
@@ -115,6 +120,9 @@ export const NoteContextProvider = (props) => {
         openErrorModal,
         handleOpenErrorModal,
         handleCloseErrorModal,
+        openSearchModal,
+        handleOpenSearchModal,
+        handleCloseSearchModal,
       }}
     >
       {props.children}

@@ -46,11 +46,11 @@ const NoteItem = ({ id, title, body, handleModalOpen }) => {
         }}
         sx={{ wordWrap: "break-word" }}
       >
-        <Typography sx={{ fontSize: ".95rem", fontWeight: "600", marginBottom: "3px" }}>
+        <Typography sx={{ fontWeight: "600", marginBottom: "3px" }}>
           {title}
         </Typography>
 
-        <Typography sx={{ fontSize: "1.03rem" }}>{body}</Typography>
+        <Typography>{body}</Typography>
       </CardContent>
       {showCardActions && (
         <CardActions>

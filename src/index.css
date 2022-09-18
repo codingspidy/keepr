@@ -6,5 +6,6 @@ body {
 }
 
 *, body {
+  /* box-sizing: border-box;     forgot to use it :-(    */
   font-family: 'Poppins', sans-serif !important;
 }

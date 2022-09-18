@@ -6,6 +6,7 @@ import Form from "./Form";
 import NotesContainer from "./NotesContainer";
 import EditNoteModal from "./EditNoteModal";
 import ErrorModal from "../ErrorModal";
+import SearchBarModal from "../NavDrawer/SearchBarModal";
 
 const drawerWidth = "240px";
 
@@ -17,23 +18,29 @@ const MainContainer = styled(Box, {
   width: "100%",
   minHeight: "74vh",
   maxWidth: "1000px",
-  padding: "3em",
+  padding: "3em 0",
   marginInline: "auto",
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(isDrawerOpen && {
-    marginRight: 0,
-    marginInline: 0,
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
+  [theme.breakpoints.up("sm")]: {
+    padding: "2em",
+    ...(isDrawerOpen && {
+      marginInline: 0,
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(["width", "margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     }),
-  }),
+  },
+  [theme.breakpoints.up("sm")]: {
+    padding: "3em 2em",
+  },
+ 
 }));
 
 const paginationStyle = {
@@ -42,6 +49,7 @@ const paginationStyle = {
   left: "50%",
   transform: "translate(-50%, 0)",
   padding: "20px",
+  marginInline: "auto",
 };
 
 const Notes = () => {
@@ -60,7 +68,7 @@ const Notes = () => {
 
   const [page, setPage] = useState(1);
   const [noOfPages] = useState(3);
-  
+
   const handleTitleEdit = (e) => {
     setCurrentNoteTitle(e.target.value);
   };
@@ -87,7 +95,11 @@ const Notes = () => {
 
   return (
     <MainContainer isDrawerOpen={isDrawerOpen}>
-    <ErrorModal errorTitle="Error!" errorMessage="Only 3 notes can be pinned" />
+      <SearchBarModal />
+      <ErrorModal
+        errorTitle="Error!"
+        errorMessage="Only 3 notes can be pinned"
+      />
       <EditNoteModal
         handleTitleEdit={handleTitleEdit}
         handleBodyEdit={handleBodyEdit}
@@ -97,7 +109,11 @@ const Notes = () => {
         currentNoteBody={currentNoteBody}
       />
       <Form />
-      <NotesContainer handleModalOpen={handleModalOpen} page={page} itemsPerPage={itemsPerPage}/>
+      <NotesContainer
+        handleModalOpen={handleModalOpen}
+        page={page}
+        itemsPerPage={itemsPerPage}
+      />
       <Box sx={paginationStyle}>
         <Pagination
           count={noOfPages}
@@ -107,6 +123,7 @@ const Notes = () => {
           size="small"
           showFirstButton
           showLastButton
+          sx={{ width: "250px", display: "flex", justifyContent: "center" }}
         />
       </Box>
     </MainContainer>
