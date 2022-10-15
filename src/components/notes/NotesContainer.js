@@ -52,9 +52,10 @@ const NotesContainer = ({ handleModalOpen, page, itemsPerPage }) => {
     <ThemeProvider theme={theme}>
       <Box sx={style}>
         <NotesList>
+                    {/* 
+            .slice((page - 1) * itemsPerPage, page * itemsPerPage) */}
           {pinnedNotesArr
             .slice(0, 4)
-            .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((note) => {
               return (
                 <NoteItem
@@ -64,14 +65,16 @@ const NotesContainer = ({ handleModalOpen, page, itemsPerPage }) => {
                   id={note.id}
                   title={note.title}
                   body={note.body}
+                  
                 />
               );
             })}
         </NotesList>
         {pinnedNotesArr.length > 0 && <Divider />}
         <NotesList>
+                    {/* .slice((page - 1) * itemsPerPage, page * itemsPerPage) */}
           {notesArr
-            .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+
             .map((note) => {
               return (
                 <NoteItem

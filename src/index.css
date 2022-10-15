@@ -1,11 +1,17 @@
+
 body {
   margin: 0;
   padding: 0;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 *, body {
+  /* -ms-overflow-style: none; */
   /* box-sizing: border-box;     forgot to use it :-(    */
   font-family: 'Poppins', sans-serif !important;
 }
+
+/* ::-webkit-scrollbar {
+  display: none;
+} */
